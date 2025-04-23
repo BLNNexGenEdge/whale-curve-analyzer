@@ -18,6 +18,55 @@ st.markdown("""
 st.title("🐳 Whale Curve Analyzer")
 st.markdown("Upload your Sales and Cost data to visualize profitability by Customer, Product, Salesperson, and Region.")
 
+# --- Enhanced Upload Instructions and Sample Tables ---
+
+st.markdown("## Upload Your Data Files")
+
+# SALES DATA SECTION
+st.markdown("### Upload Sales Data (.xlsx)")
+st.info(
+    "Your sales data file must contain these columns:\n\n"
+    "- Customer ID\n"
+    "- Product ID\n"
+    "- Net Sales $\n"
+    "- Salesperson\n"
+    "- Region\n\n"
+    "Each row should represent one transaction or invoice line. "
+    "Net Sales $ should reflect revenue after any discounts."
+)
+sample_sales = pd.DataFrame({
+    "Customer ID": ["C001", "C002"],
+    "Product ID": ["P101", "P102"],
+    "Net Sales $": [12000, 9500],
+    "Salesperson": ["Sally", "Jim"],
+    "Region": ["North", "West"]
+})
+st.markdown("**Example Sales Data Format:**")
+st.dataframe(sample_sales)
+
+# COST DATA SECTION
+st.markdown("### Upload Cost Detail Data (.xlsx)")
+st.info(
+    "Your cost file must contain:\n\n"
+    "- Product ID\n"
+    "Plus either:\n"
+    "- Standard Total Cost\n"
+    "OR\n"
+    "- Material Cost, Labor Cost, Overhead Cost, Service Cost\n\n"
+    "Note: If 'Standard Total Cost' is provided, it overrides all other cost fields."
+)
+sample_cost = pd.DataFrame({
+    "Product ID": ["P101", "P102"],
+    "Standard Total Cost": [7200, None],
+    "Material Cost": [None, 3000],
+    "Labor Cost": [None, 2000],
+    "Overhead Cost": [None, 1500],
+    "Service Cost": [None, 1000]
+})
+st.markdown("**Example Cost Data Format:**")
+st.dataframe(sample_cost)
+
+
 col1, col2 = st.columns(2)
 
 with col1:
